@@ -21,7 +21,7 @@ db.connect((err) => {
     console.error("Database connection failed:", err);
     return;
   }
-  console.log("MySQL Connected...");
+  console.log("MySQL Connecting..");
 });
 
 app.use("/api/rooms", roomRoutes);
