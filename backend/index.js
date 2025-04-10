@@ -162,5 +162,9 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/server", (req, res) => {
+  res.json({ message: "Server Running Successfully" });
+});
+
 // ✅ Server Running
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5001, () => console.log("Server running on port 5001"));
