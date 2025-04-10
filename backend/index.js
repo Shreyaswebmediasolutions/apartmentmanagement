@@ -18,7 +18,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error("Database connection failed:", err);
+    console.error("Database connection was failed:", err);
     return;
   }
   console.log("MySQL Connecting..");
@@ -101,7 +101,7 @@ app.get("/executivemembers", (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "No members found" });
     }
-    res.status(200).json(results); // Returns the latest member for each position
+    res.status(200).json(results); // Returns the latest member for each position gdh
   });
 });
 
