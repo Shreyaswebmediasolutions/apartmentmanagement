@@ -32,11 +32,11 @@ const RoomsList = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/rooms")
+    axios.get("http://147.93.31.45:5001/api/rooms")
       .then((response) => {
         setRooms(response.data);
         setLoading(false);
-        
+
       })
       .catch(() => {
         setError("Error fetching rooms");
@@ -45,7 +45,7 @@ const RoomsList = () => {
   }, []);
 
   const handleAddRoomSave = () => {
-    axios.post("http://localhost:5000/api/rooms", newRoom)
+    axios.post("http://147.93.31.45:5001/api/rooms", newRoom)
       .then(({ data }) => {
         setRooms([...rooms, data]);
         setNewRoom(initialRoom);
@@ -55,7 +55,7 @@ const RoomsList = () => {
   };
 
   const handleUpdateRoom = () => {
-    axios.put(`http://localhost:5000/api/rooms/${editRoom.id}`, editRoom)
+    axios.put(`http://147.93.31.45:5001/api/rooms/${editRoom.id}`, editRoom)
       .then(({ data }) => {
         const updatedRooms = rooms.map((room) => room.id === data.id ? data : room);
         setRooms(updatedRooms);

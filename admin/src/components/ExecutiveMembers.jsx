@@ -18,7 +18,7 @@ function ExecutiveMembers() {
     //const [viewIndex, setViewIndex] = useState(null); // Tracks the index of the selected member
     const handleView = (index) => {
       setFormData(members[index]); // Set the selected member's data
-     // setViewIndex(index); // Store the index of the selected member
+      // setViewIndex(index); // Store the index of the selected member
     };
   }
 
@@ -76,19 +76,19 @@ function ExecutiveMembers() {
     try {
       if (editIndex !== null) {
         // Update member in database
-        await axios.put(`http://localhost:5000/executivemember/${members[editIndex].id}`, formData);
+        await axios.put(`http://147.93.31.45:5001/executivemember/${members[editIndex].id}`, formData);
 
         // Fetch updated data from server
-        const res = await axios.get("http://localhost:5000/executivemembers");
+        const res = await axios.get("http://147.93.31.45:5001/executivemembers");
         setMembers(res.data);
 
         setEditIndex(null);
       } else {
         // Add new member to database
-        await axios.post("http://localhost:5000/executivemember", formData);
+        await axios.post("http://147.93.31.45:5001/executivemember", formData);
 
         // Fetch updated data
-        const res = await axios.get("http://localhost:5000/executivemembers");
+        const res = await axios.get("http://147.93.31.45:5001/executivemembers");
         setMembers(res.data);
       }
 
@@ -102,7 +102,7 @@ function ExecutiveMembers() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5000/executivemembers") // Adjust URL as per your backend
+    axios.get("http://147.93.31.45:5001/executivemembers") // Adjust URL as per your backend
       .then((response) => {
         setMembers(response.data);
       })
@@ -119,7 +119,7 @@ function ExecutiveMembers() {
     const position = members[index].position;
     setSelectedPosition(position); // Store the selected position
 
-    axios.get(`http://localhost:5000/executivemembers/position/${position}`)
+    axios.get(`http://147.93.31.45:5001/executivemembers/position/${position}`)
       .then((response) => {
         setSelectedMembers(response.data); // Update selected members
       })
@@ -174,7 +174,7 @@ function ExecutiveMembers() {
               <p><strong>Contact No:</strong> {member.contact_no}</p>
             </div>
             <div className="card-footer">
-              <button className="edit-button" onClick={() =>{handleEdit(index);setShowForm(true);}}>Edit</button>
+              <button className="edit-button" onClick={() => { handleEdit(index); setShowForm(true); }}>Edit</button>
               <button className="view-button" onClick={() => handleView(index)}>View</button>
             </div>
           </div>
@@ -208,31 +208,31 @@ function ExecutiveMembers() {
         </tbody>
       </table> */}
 
-<div>
-  {selectedPosition && selectedMembers.length > 0 && (
-    <div>
-      <h3>All {selectedPosition} Members</h3>
+      <div>
+        {selectedPosition && selectedMembers.length > 0 && (
+          <div>
+            <h3>All {selectedPosition} Members</h3>
 
-      {/* Cards Container */}
-      <div className="card-container">
-        {selectedMembers.map((member, index) => (
-          <div className="member-card" key={index}>
-            <h4>{member.name}</h4>
-            <p><strong>Flat No:</strong> {member.flat_no}</p>
-            <p><strong>Position:</strong> {member.position}</p>
-            <p><strong>Contact:</strong> {member.contact_no}</p>
-            <p><strong>Date:</strong> {new Intl.DateTimeFormat('en-GB').format(new Date(member.created_at))}</p>
+            {/* Cards Container */}
+            <div className="card-container">
+              {selectedMembers.map((member, index) => (
+                <div className="member-card" key={index}>
+                  <h4>{member.name}</h4>
+                  <p><strong>Flat No:</strong> {member.flat_no}</p>
+                  <p><strong>Position:</strong> {member.position}</p>
+                  <p><strong>Contact:</strong> {member.contact_no}</p>
+                  <p><strong>Date:</strong> {new Intl.DateTimeFormat('en-GB').format(new Date(member.created_at))}</p>
+                </div>
+              ))}
+            </div>
+
+            <button className="close-btn" onClick={() => setSelectedPosition(null)}>
+              Close
+            </button>
           </div>
-        ))}
+        )}
       </div>
 
-      <button className="close-btn" onClick={() => setSelectedPosition(null)}>
-        Close
-      </button>
-    </div>
-  )}
-</div>
-      
     </div>
 
   );

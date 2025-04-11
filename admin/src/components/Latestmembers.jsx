@@ -8,7 +8,7 @@ const LatestMembersByPosition = () => {
 
   // Fetch the latest member per position
   useEffect(() => {
-    axios.get("http://localhost:5000/executivemembers/latest-per-position")
+    axios.get("http://147.93.31.45:5001/executivemembers/latest-per-position")
       .then((response) => {
         setLatestMembers(response.data);
       })
@@ -20,7 +20,7 @@ const LatestMembersByPosition = () => {
   // Function to fetch members by position
   const handleView = (position) => {
     setSelectedPosition(position);
-    axios.get(`http://localhost:5000/executivemembers/position/${position}`)
+    axios.get(`http://147.93.31.45:5001/executivemembers/position/${position}`)
       .then((response) => {
         setViewedMembers(response.data);
       })
