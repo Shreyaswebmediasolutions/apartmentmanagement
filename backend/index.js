@@ -7,7 +7,11 @@ const ownerRoutes = require("./routes/ownerRoutes");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://147.93.31.45:3002",
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
 
 const db = mysql.createConnection({
   host: "localhost",
