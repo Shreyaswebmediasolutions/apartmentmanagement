@@ -7,11 +7,13 @@ const ownerRoutes = require("./routes/ownerRoutes");
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: "http://147.93.31.45:3002",
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://147.93.31.45:3002",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -35,6 +37,7 @@ app.use("/api/owners", ownerRoutes);
 app.post("/register", (req, res) => {
   const { name, address, contact, email, userId, userRole, password } =
     req.body;
+  console.log("req.body", req.body);
 
   if (
     !name ||
