@@ -12,7 +12,7 @@ const ContactPage = () => {
   // Fetch members from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/executivemembers") // Make sure your backend is running on this URL
+      .get("http://147.93.31.45:5001/executivemembers") // Make sure your backend is running on this URL
       .then((response) => {
         console.log("Fetched members:", response.data);
         setMembers(response.data);

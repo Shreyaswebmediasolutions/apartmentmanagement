@@ -8,13 +8,19 @@ const ownerRoutes = require("./routes/ownerRoutes");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://147.93.31.45:3002",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "apartmentDB",
+  password: "Shreyas4321@",
+  database: "apartmentdb",
 });
 
 db.connect((err) => {
@@ -22,7 +28,7 @@ db.connect((err) => {
     console.error("Database connection was failed:", err);
     return;
   }
-  console.log("MySQL Connected...");
+  console.log("MySQL Connecting..");
 });
 
 app.use("/api/rooms", roomRoutes);
@@ -33,6 +39,7 @@ app.use("/api/owners", ownerRoutes);
 app.post("/register", (req, res) => {
   const { name, address, contact, email, userId, userRole, password } =
     req.body;
+  console.log("req.body", req.body);
 
   if (
     !name ||
@@ -164,7 +171,6 @@ app.post("/login", (req, res) => {
   });
 });
 
-// POST new expense
 app.post('/expenses/add', (req, res) => {
   const { month, description, amount } = req.body;
   const sql = 'INSERT INTO expenses (month, description, amount) VALUES (?, ?, ?)';
@@ -229,3 +235,12 @@ module.exports = router;
 
 // ✅ Server Running
 app.listen(5000, () => console.log("Server is running on port 5000"));
+
+app.get("/server", (req, res) => {
+  res.json({ message: "Server Running Successfully" });
+});
+
+// ✅ Server Running
+app.listen(5001, "0.0.0.0", () => {
+  console.log("✅ Server running on http://0.0.0.0:5001");
+});
