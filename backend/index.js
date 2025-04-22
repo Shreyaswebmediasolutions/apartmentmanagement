@@ -21,9 +21,6 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
 
-  password: "", // Your MySQL password
-  database: "apartmentDB", // Your database name
-
   password: "Shreyas4321@",
   database: "apartmentdb",
 
@@ -41,12 +38,6 @@ db.connect((err) => {
 app.use("/api/rooms", roomRoutes);
 app.use("/api/owners", ownerRoutes);
 
-
-// Register User
-app.post("/register", (req, res) => {
-  const { name, address, contact, email, userId, userRole, password } = req.body;
-
-  if (!name || !address || !contact || !email || !userId || !userRole || !password) {
 
 
 // ✅ Register API - Fixing Table Names
