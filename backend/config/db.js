@@ -6,14 +6,14 @@ dotenv.config();
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Shreyas4321@",
   database: "apartmentdb",
   port: 3306
 });
 
 db.connect((err) => {
   if (err) throw err;
-  console.log("MySQL Connected...");
+  console.log("MySQL Connecting...");
 });
 
 // ✅ Export the promise wrapper

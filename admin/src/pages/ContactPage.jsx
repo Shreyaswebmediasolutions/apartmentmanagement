@@ -9,8 +9,13 @@ const ContactPage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+
     // Fetch executive members
     axios.get("http://localhost:5000/executivemembers")
+
+    axios
+      .get("http://147.93.31.45:5001/executivemembers") // Make sure your backend is running on this URL
+
       .then((response) => {
         setMembers(response.data);
       })
