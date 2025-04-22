@@ -20,10 +20,8 @@ app.use(
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-
   password: "Shreyas4321@",
   database: "apartmentdb",
-
 });
 
 db.connect((err) => {
@@ -342,8 +340,6 @@ app.put('/expenses/update/:id', (req, res) => {
 module.exports = router;
 
 // ✅ Server Running
-app.listen(5000, () => console.log("Server is running on port 5000"));
-
 app.get("/server", (req, res) => {
   res.json({ message: "Server Running Successfully" });
 });
