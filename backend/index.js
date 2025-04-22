@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql");
+const router = express.Router();
 const cors = require("cors");
 const roomRoutes = require("./routes/roomRoutes");
 const ownerRoutes = require("./routes/ownerRoutes");
@@ -26,6 +27,7 @@ db.connect((err) => {
 
 app.use("/api/rooms", roomRoutes);
 app.use("/api/owners", ownerRoutes);
+
 
 // ✅ Register API - Fixing Table Names
 app.post("/register", (req, res) => {
@@ -162,5 +164,68 @@ app.post("/login", (req, res) => {
   });
 });
 
+// POST new expense
+app.post('/expenses/add', (req, res) => {
+  const { month, description, amount } = req.body;
+  const sql = 'INSERT INTO expenses (month, description, amount) VALUES (?, ?, ?)';
+  db.query(sql, [month, description, amount], (err, result) => {
+    if (err){
+      console.error('Error inserting expense:',err);
+      return res.status(500).send({ success: false, error: err.message });
+    }
+    res.send({ success: true, message: 'Expense added successfully' });
+  });
+});
+
+// ✅ GET: /expenses/:month
+app.get("/expenses/:month", (req, res) => {
+  const month = req.params.month; // e.g., "April 2025"
+  const query = "SELECT * FROM expenses WHERE month = ?";
+  db.query(query, [month], (err, results) => {
+    if (err) {
+      console.error('Error fetching expenses:', err);
+      return res.status(500).send({ success: false, error: err.message });
+    }
+    res.send({ success: true, data: results });
+  });
+});
+
+
+
+router.put('/expenses/add', (req, res) => {
+  const { id } = req.params;
+  const { month, description, amount } = req.body;
+  console.log(req.body);
+
+  const query = `
+    UPDATE expenses 
+    SET month = ?, description = ?, amount = ? 
+    WHERE id = ?`;
+    
+  db.query(query, [month, description, amount], (err, result) => {
+    if (err) return res.status(500).send({ error: err.message });
+    res.send({ success: true, message: 'Expense updated' });
+  });
+});
+
+// Update an existing expense
+app.put('/expenses/update/:id', (req, res) => {
+  const { id } = req.params;
+  const { month, description, amount } = req.body;
+
+  const query = 'UPDATE expenses SET month = ?, description = ?, amount = ? WHERE id = ?';
+  db.query(query, [month, description, amount, id], (err, result) => {
+    if (err) {
+      console.error('Error updating expense:', err);
+      return res.status(500).send({ success: false, error: err.message });
+    }
+    res.send({ success: true });
+  });
+});
+
+
+
+module.exports = router;
+
 // ✅ Server Running
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5000, () => console.log("Server is running on port 5000"));
