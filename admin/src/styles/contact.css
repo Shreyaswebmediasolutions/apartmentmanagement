@@ -1,65 +1,102 @@
-/* src/index.css */
-
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  .contact-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .contact-header h1 {
-    margin: 0;
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-right input {
-    padding: 8px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-  }
-  
-  .contact-page {
-    padding: 20px;
-  }
-  
-  .contact-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .contact-card {
-    background-color: white;
-    padding: 15px;
-    gap:30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .contact-card h3 {
-    margin: 0;
-    color: #007BFF;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Header Bar */
+.contact-header {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-header h1 {
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right input {
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Contact Page Layout */
+.contactPage {
+  padding: 30px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Contacts Header (Section Title) */
+.contacts-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: aqua;
+  padding: 20px 20px;
+  margin: 20px,20px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.contacts-header h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin: 0;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 6px;
+}
+
+/* Contact List */
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Individual Contact Card */
+.contact-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: scale(1.02);
+}
+
+.contact-card h3 {
+  margin: 0;
+  color: #007BFF;
+}
+
+.contact-card p {
+  margin: 5px 0;
+  color: #333;
+}

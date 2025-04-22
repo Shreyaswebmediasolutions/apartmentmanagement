@@ -511,12 +511,12 @@ button {
     flex-direction: column;
   }
 
-  .sidebar {
-    width: 100%;
+  /* .sidebar {
+    width: 10%;
     height: auto;
     flex-direction: row;
     overflow-x: auto;
-  }
+  } */
 
   .dashboard-content {
     height: auto;

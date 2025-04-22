@@ -9,6 +9,9 @@ import ExecutiveMembers from "./components/ExecutiveMembers";
 import RoomsList from "./pages/RoomsList";
 import OwnerDetails from "./pages/OwnerDetails";
 import ContactPage from "./pages/ContactPage";
+import YearlySpending from "./pages/YearlySpending";
+import FlatMaintenance from "./pages/FlatMaintenance";
+import PaymentPage from  "./pages/PaymentPage";
 import "./App.css";
 
 function App() {
@@ -23,7 +26,11 @@ function App() {
         <Route path="/rooms" element={<RoomsList />} />
         <Route path="/room/:id" element={<OwnerDetails />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/yearlyspending" element={<YearlySpending />} />
+        <Route path="/FlatMaintenance" element={<FlatMaintenance/>} />
+        <Route path="/PaymentPage" element={<PaymentPage/>} />
       </Routes>
+
     </Router>
   );
 }
